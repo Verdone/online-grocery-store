@@ -132,18 +132,6 @@ if(!isset($admin_id)){
 
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="js/script.js"></script>
 
 </body>

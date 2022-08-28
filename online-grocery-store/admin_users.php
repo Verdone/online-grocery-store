@@ -68,7 +68,7 @@ if(isset($_GET['delete'])){
 
 </section>
 
-<script src="js/script.js"/>
+<script src="js/script.js"></script>
 
 </body>
 </html>

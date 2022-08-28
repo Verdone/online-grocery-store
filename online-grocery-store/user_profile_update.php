@@ -72,12 +72,9 @@ if(isset($_POST['update_profile'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>update user profile</title>
-
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/components.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs
+                                /font-awesome/6.1.1/css/all.min.css">
+   <link rel="stylesheet" href=".../css/style.css?v=<?php echo time(); ?>">
 
 </head>
 <body>
@@ -118,17 +115,7 @@ if(isset($_POST['update_profile'])){
 
 </section>
 
-
-
-
-
-
-
-
-
-
 <?php include 'footer.php'; ?>
-
 
 <script src="js/script.js"></script>
 

@@ -36,6 +36,7 @@
 
    </section>
 
-   <p class="credit"> &copy; copyright @ <?= date('Y'); ?> by <span>mr. web designer</span> | all rights reserved! </p>
+   <p class="credit"> &copy; copyright @ <?= date('Y'); ?> by
+   <span>Giuliano Verdone</span> | all rights reserved! </p>
 
 </footer>

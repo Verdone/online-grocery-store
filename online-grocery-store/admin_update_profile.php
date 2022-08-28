@@ -128,7 +128,7 @@ if(isset($_POST['update_profile'])){
 
 </section>
 
-<script src="js/script.js" />
+<script src="js/script.js"></script>
 
 </body>
 </html>
