@@ -28,12 +28,9 @@ if(isset($_GET['delete'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>users</title>
-
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/admin_style.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs
+                                /font-awesome/6.1.1/css/all.min.css">
+   <link rel="stylesheet" href=".../css/admin_style.css?v=<?php echo time(); ?>">
 
 </head>
 <body>
@@ -51,13 +48,18 @@ if(isset($_GET['delete'])){
          $select_users->execute();
          while($fetch_users = $select_users->fetch(PDO::FETCH_ASSOC)){
       ?>
-      <div class="box" style="<?php if($fetch_users['id'] == $admin_id){ echo 'display:none'; }; ?>">
+      <div class="box" style="<?php if($fetch_users['id'] == $admin_id)
+           { echo 'display:none'; }; ?>">
          <img src="uploaded_img/<?= $fetch_users['image']; ?>" alt="">
          <p> user id : <span><?= $fetch_users['id']; ?></span></p>
          <p> username : <span><?= $fetch_users['name']; ?></span></p>
          <p> email : <span><?= $fetch_users['email']; ?></span></p>
-         <p> user type : <span style=" color:<?php if($fetch_users['user_type'] == 'admin'){ echo 'orange'; }; ?>"><?= $fetch_users['user_type']; ?></span></p>
-         <a href="admin_users.php?delete=<?= $fetch_users['id']; ?>" onclick="return confirm('delete this user?');" class="delete-btn">delete</a>
+         <p> user type : <span style=" color:<?php 
+             if($fetch_users['user_type'] == 'admin'){ echo 'orange'; }; ?>">
+                <?= $fetch_users['user_type']; ?></span></p>
+         <a href="admin_users.php?delete=<?= $fetch_users['id']; ?>"
+            onclick="return confirm('delete this user?');" 
+            class="delete-btn">delete</a>
       </div>
       <?php
       }
@@ -66,19 +68,7 @@ if(isset($_GET['delete'])){
 
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="js/script.js"></script>
+<script src="js/script.js"/>
 
 </body>
 </html>

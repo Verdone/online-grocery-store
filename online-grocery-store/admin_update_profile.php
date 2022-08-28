@@ -17,7 +17,8 @@ if(isset($_POST['update_profile'])){
    $email = $_POST['email'];
    $email = filter_var($email, FILTER_SANITIZE_STRING);
 
-   $update_profile = $conn->prepare("UPDATE `users` SET name = ?, email = ? WHERE id = ?");
+   $update_profile = $conn->prepare("UPDATE `users` SET name = ?, email = ?
+                                     WHERE id = ?");
    $update_profile->execute([$name, $email, $admin_id]);
 
    $image = $_FILES['image']['name'];
@@ -31,7 +32,8 @@ if(isset($_POST['update_profile'])){
       if($image_size > 2000000){
          $message[] = 'image size is too large!';
       }else{
-         $update_image = $conn->prepare("UPDATE `users` SET image = ? WHERE id = ?");
+         $update_image = $conn->prepare("UPDATE `users` SET image = ?  
+                                         WHERE id = ?");
          $update_image->execute([$image, $admin_id]);
          if($update_image){
             move_uploaded_file($image_tmp_name, $image_folder);
@@ -55,7 +57,8 @@ if(isset($_POST['update_profile'])){
       }elseif($new_pass != $confirm_pass){
          $message[] = 'confirm password not matched!';
       }else{
-         $update_pass_query = $conn->prepare("UPDATE `users` SET password = ? WHERE id = ?");
+         $update_pass_query = $conn->prepare("UPDATE `users` SET password = ? 
+                                              WHERE id = ?");
          $update_pass_query->execute([$confirm_pass, $admin_id]);
          $message[] = 'password updated successfully!';
       }
@@ -72,13 +75,9 @@ if(isset($_POST['update_profile'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>update admin profile</title>
-
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/components.css">
-
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs
+                                /font-awesome/6.1.1/css/all.min.css">
+   <link rel="stylesheet" href=".../css/components.css?v=<?php echo time(); ?>">
 </head>
 <body>
    
@@ -93,44 +92,43 @@ if(isset($_POST['update_profile'])){
       <div class="flex">
          <div class="inputBox">
             <span>username :</span>
-            <input type="text" name="name" value="<?= $fetch_profile['name']; ?>" placeholder="update username" required class="box">
+            <input type="text" name="name" 
+                   value="<?= $fetch_profile['name']; ?>"
+                   placeholder="update username" required class="box">
             <span>email :</span>
-            <input type="email" name="email" value="<?= $fetch_profile['email']; ?>" placeholder="update email" required class="box">
+            <input type="email" name="email" 
+                   value="<?= $fetch_profile['email']; ?>"
+                   placeholder="update email" required class="box">
             <span>update pic :</span>
-            <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="box">
-            <input type="hidden" name="old_image" value="<?= $fetch_profile['image']; ?>">
+            <input type="file" name="image"
+                   accept="image/jpg, image/jpeg, image/png" class="box">
+            <input type="hidden" name="old_image" 
+                   value="<?= $fetch_profile['image']; ?>">
          </div>
          <div class="inputBox">
-            <input type="hidden" name="old_pass" value="<?= $fetch_profile['password']; ?>">
+            <input type="hidden" name="old_pass" 
+                   value="<?= $fetch_profile['password']; ?>">
             <span>old password :</span>
-            <input type="password" name="update_pass" placeholder="enter previous password" class="box">
+            <input type="password" name="update_pass" 
+                   placeholder="enter previous password" class="box">
             <span>new password :</span>
-            <input type="password" name="new_pass" placeholder="enter new password" class="box">
+            <input type="password" name="new_pass" 
+                   placeholder="enter new password" class="box">
             <span>confirm password :</span>
-            <input type="password" name="confirm_pass" placeholder="confirm new password" class="box">
+            <input type="password" name="confirm_pass"
+                   placeholder="confirm new password" class="box">
          </div>
       </div>
       <div class="flex-btn">
-         <input type="submit" class="btn" value="update profile" name="update_profile">
+         <input type="submit" class="btn" value="update profile" 
+                name="update_profile">
          <a href="admin_page.php" class="option-btn">go back</a>
       </div>
    </form>
 
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="js/script.js"></script>
+<script src="js/script.js" />
 
 </body>
 </html>
