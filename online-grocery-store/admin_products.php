@@ -34,7 +34,9 @@ if(isset($_POST['add_product'])){
       $message[] = 'product name already exist!';
    }else{
 
-      $insert_products = $conn->prepare("INSERT INTO `products`(name, category, details, price, image) VALUES(?,?,?,?,?)");
+      $insert_products = $conn->prepare("INSERT INTO `products`(name, category,
+                                        details, price, image) VALUES(?,?,?,?,?)
+                                        ");
       $insert_products->execute([$name, $category, $details, $price, $image]);
 
       if($insert_products){
@@ -54,7 +56,8 @@ if(isset($_POST['add_product'])){
 if(isset($_GET['delete'])){
 
    $delete_id = $_GET['delete'];
-   $select_delete_image = $conn->prepare("SELECT image FROM `products` WHERE id = ?");
+   $select_delete_image = $conn->prepare("SELECT image FROM `products` 
+                                          WHERE id = ?");
    $select_delete_image->execute([$delete_id]);
    $fetch_delete_image = $select_delete_image->fetch(PDO::FETCH_ASSOC);
    unlink('uploaded_img/'.$fetch_delete_image['image']);
@@ -78,13 +81,9 @@ if(isset($_GET['delete'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>products</title>
-
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/admin_style.css">
-
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs
+                                /font-awesome/6.1.1/css/all.min.css">
+   <link rel="stylesheet" href="css/admin_style.css?v=<?php echo time(); ?>">
 </head>
 <body>
    
@@ -97,7 +96,8 @@ if(isset($_GET['delete'])){
    <form action="" method="POST" enctype="multipart/form-data">
       <div class="flex">
          <div class="inputBox">
-         <input type="text" name="name" class="box" required placeholder="enter product name">
+         <input type="text" name="name" class="box" required 
+                placeholder="enter product name">
          <select name="category" class="box" required>
             <option value="" selected disabled>select category</option>
                <option value="vegitables">vegitables</option>
@@ -107,11 +107,15 @@ if(isset($_GET['delete'])){
          </select>
          </div>
          <div class="inputBox">
-         <input type="number" min="0" name="price" class="box" required placeholder="enter product price">
-         <input type="file" name="image" required class="box" accept="image/jpg, image/jpeg, image/png">
+         <input type="number" min="0" name="price" class="box" required 
+                placeholder="enter product price">
+         <input type="file" name="image" required class="box" 
+                accept="image/jpg, image/jpeg, image/png">
          </div>
       </div>
-      <textarea name="details" class="box" required placeholder="enter product details" cols="30" rows="10"></textarea>
+      <textarea name="details" class="box" required 
+                placeholder="enter product details" cols="30" 
+                rows="10"></textarea>
       <input type="submit" class="btn" value="add product" name="add_product">
    </form>
 
@@ -136,8 +140,11 @@ if(isset($_GET['delete'])){
       <div class="cat"><?= $fetch_products['category']; ?></div>
       <div class="details"><?= $fetch_products['details']; ?></div>
       <div class="flex-btn">
-         <a href="admin_update_product.php?update=<?= $fetch_products['id']; ?>" class="option-btn">update</a>
-         <a href="admin_products.php?delete=<?= $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('delete this product?');">delete</a>
+         <a href="admin_update_product.php?update=<?= $fetch_products['id']; ?>"
+            class="option-btn">update</a>
+         <a href="admin_products.php?delete=<?= $fetch_products['id']; ?>" 
+            class="delete-btn" onclick="return confirm('delete this product?');"
+            >delete</a>
       </div>
    </div>
    <?php
@@ -150,18 +157,6 @@ if(isset($_GET['delete'])){
    </div>
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-<script src="js/script.js"></script>
-
+<script src="js/script.js"/>
 </body>
 </html>

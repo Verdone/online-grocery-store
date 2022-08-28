@@ -15,7 +15,8 @@ if(isset($_POST['update_order'])){
    $order_id = $_POST['order_id'];
    $update_payment = $_POST['update_payment'];
    $update_payment = filter_var($update_payment, FILTER_SANITIZE_STRING);
-   $update_orders = $conn->prepare("UPDATE `orders` SET payment_status = ? WHERE id = ?");
+   $update_orders = $conn->prepare("UPDATE `orders` SET payment_status = ? 
+   WHERE id = ?");
    $update_orders->execute([$update_payment, $order_id]);
    $message[] = 'payment has been updated!';
 
@@ -39,13 +40,9 @@ if(isset($_GET['delete'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>orders</title>
-
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/admin_style.css">
-
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs
+   /font-awesome/6.1.1/css/all.min.css">
+   <link rel="stylesheet" href="css/admin_style.css?v=<?php echo time(); ?>">
 </head>
 <body>
    
@@ -81,8 +78,11 @@ if(isset($_GET['delete'])){
                <option value="completed">completed</option>
             </select>
             <div class="flex-btn">
-               <input type="submit" name="update_order" class="option-btn" value="udate">
-               <a href="admin_orders.php?delete=<?= $fetch_orders['id']; ?>" class="delete-btn" onclick="return confirm('delete this order?');">delete</a>
+               <input type="submit" name="update_order" class="option-btn" 
+               value="udate">
+               <a href="admin_orders.php?delete=<?= $fetch_orders['id']; ?>" 
+                  class="delete-btn" onclick="return 
+                  confirm('delete this order?');">delete</a>
             </div>
          </form>
       </div>
@@ -96,19 +96,6 @@ if(isset($_GET['delete'])){
    </div>
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="js/script.js"></script>
-
+<script src="js/script.js" />
 </body>
 </html>

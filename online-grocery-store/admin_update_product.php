@@ -29,7 +29,9 @@ if(isset($_POST['update_product'])){
    $image_folder = 'uploaded_img/'.$image;
    $old_image = $_POST['old_image'];
 
-   $update_product = $conn->prepare("UPDATE `products` SET name = ?, category = ?, details = ?, price = ? WHERE id = ?");
+   $update_product = $conn->prepare("UPDATE `products` SET name = ?,
+                                     category = ?, details = ?, price = ? 
+                                     WHERE id = ?");
    $update_product->execute([$name, $category, $details, $price, $pid]);
 
    $message[] = 'product updated successfully!';
@@ -39,7 +41,8 @@ if(isset($_POST['update_product'])){
          $message[] = 'image size is too large!';
       }else{
 
-         $update_image = $conn->prepare("UPDATE `products` SET image = ? WHERE id = ?");
+         $update_image = $conn->prepare("UPDATE `products` SET image = ? 
+                                         WHERE id = ?");
          $update_image->execute([$image, $pid]);
 
          if($update_image){
@@ -61,13 +64,9 @@ if(isset($_POST['update_product'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>update products</title>
-
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/admin_style.css">
-
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs
+                                /font-awesome/6.1.1/css/all.min.css">
+   <link rel="stylesheet" href="css/admin_style.css?v=<?php echo time(); ?>">
 </head>
 <body>
    
@@ -85,11 +84,14 @@ if(isset($_POST['update_product'])){
          while($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)){ 
    ?>
    <form action="" method="post" enctype="multipart/form-data">
-      <input type="hidden" name="old_image" value="<?= $fetch_products['image']; ?>">
+      <input type="hidden" name="old_image" 
+             value="<?= $fetch_products['image']; ?>">
       <input type="hidden" name="pid" value="<?= $fetch_products['id']; ?>">
       <img src="uploaded_img/<?= $fetch_products['image']; ?>" alt="">
-      <input type="text" name="name" placeholder="enter product name" required class="box" value="<?= $fetch_products['name']; ?>">
-      <input type="number" name="price" min="0" placeholder="enter product price" required class="box" value="<?= $fetch_products['price']; ?>">
+      <input type="text" name="name" placeholder="enter product name" 
+             required class="box" value="<?= $fetch_products['name']; ?>">
+      <input type="number" name="price" min="0" placeholder="enter product price"
+             required class="box" value="<?= $fetch_products['price']; ?>">
       <select name="category" class="box" required>
          <option selected><?= $fetch_products['category']; ?></option>
          <option value="vegitables">vegitables</option>
@@ -97,10 +99,14 @@ if(isset($_POST['update_product'])){
          <option value="meat">meat</option>
          <option value="fish">fish</option>
       </select>
-      <textarea name="details" required placeholder="enter product details" class="box" cols="30" rows="10"><?= $fetch_products['details']; ?></textarea>
-      <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png">
+      <textarea name="details" required placeholder="enter product details" 
+                class="box" cols="30" rows="10"><?= $fetch_products['details']; 
+                ?></textarea>
+      <input type="file" name="image" class="box" accept="image/jpg,
+             image/jpeg, image/png">
       <div class="flex-btn">
-         <input type="submit" class="btn" value="update product" name="update_product">
+         <input type="submit" class="btn" value="update product"
+                name="update_product">
          <a href="admin_products.php" class="option-btn">go back</a>
       </div>
    </form>
@@ -112,20 +118,6 @@ if(isset($_POST['update_product'])){
    ?>
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="js/script.js"></script>
-
+<script src="js/script.js"/>
 </body>
 </html>
